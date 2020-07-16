@@ -1,15 +1,21 @@
 
 public class userinfo {
 
+	/**
+	 * 姓名
+	 */
 	public String name;
+	/**
+	 * 身份证号
+	 */
 	public String cardid;
+	/**
+	 * 性别
+	 */
 	public String sex;
+	/**
+	 * qq号
+	 */
 	public String qqString;
-	public String isname()
-	{
-		return name;
-	}
-	public void setname(String name) {
-		this.name=name;
-	}
+	
 }
