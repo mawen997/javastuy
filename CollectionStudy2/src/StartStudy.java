@@ -1,42 +1,116 @@
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 import com.alibaba.fastjson.JSON;
-import com.sun.xml.internal.fastinfoset.util.ValueArrayResourceException;
+import com.cj.entity.CardInsuredperson;
+import com.cj.entity.OOrderlog;
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 public class StartStudy {
 
 	public static void main(String[] strings) {
 		/*
-		 * ¡¾ArrayList¡¿¸ÃÀàÒ²ÊÇÊµÏÖÁËListµÄ½Ó¿Ú£¬ÊµÏÖÁË¿É±ä´óĞ¡µÄÊı×é£¬Ëæ»ú·ÃÎÊºÍ±éÀúÔªËØÊ±£¬ Ìá¹©¸üºÃµÄĞÔÄÜ¡£¸ÃÀàÒ²ÊÇ·ÇÍ¬²½µÄ,ÔÚ¶àÏß³ÌµÄÇé¿öÏÂ²»ÒªÊ¹ÓÃ¡£
-		 * ArrayList Ôö³¤µ±Ç°³¤¶ÈµÄ50%£¬²åÈëÉ¾³ıĞ§ÂÊµÍ¡£
-		  * Ê¹ÓÃÇé¿ö£ºÆµ·±·ÃÎÊÁĞ±íÖĞµÄÄ³Ò»¸öÔªËØ¡£Ö»ĞèÒªÔÚÁĞ±íÄ©Î²½øĞĞÌí¼ÓºÍÉ¾³ıÔªËØ²Ù×÷
+		 * ã€ArrayListã€‘è¯¥ç±»ä¹Ÿæ˜¯å®ç°äº†Listçš„æ¥å£ï¼Œå®ç°äº†å¯å˜å¤§å°çš„æ•°ç»„ï¼Œéšæœºè®¿é—®å’Œéå†å…ƒç´ æ—¶ï¼Œ æä¾›æ›´å¥½çš„æ€§èƒ½ã€‚è¯¥ç±»ä¹Ÿæ˜¯éåŒæ­¥çš„,åœ¨å¤šçº¿ç¨‹çš„æƒ…å†µä¸‹ä¸è¦ä½¿ç”¨ã€‚
+		 * ArrayList å¢é•¿å½“å‰é•¿åº¦çš„50%ï¼Œæ’å…¥åˆ é™¤æ•ˆç‡ä½ã€‚
+		  * ä½¿ç”¨æƒ…å†µï¼šé¢‘ç¹è®¿é—®åˆ—è¡¨ä¸­çš„æŸä¸€ä¸ªå…ƒç´ ã€‚åªéœ€è¦åœ¨åˆ—è¡¨æœ«å°¾è¿›è¡Œæ·»åŠ å’Œåˆ é™¤å…ƒç´ æ“ä½œ
 		 */
 		var lst=new ArrayList<userinfo>()
-		{{add(new userinfo() {{name="sdsd1";cardid="522728198511053015";sex="ÄĞ";qqString="403648571";}});
-		add(new userinfo() {{name="sdsd2";cardid="522728198511053015";sex="ÄĞ";qqString="403648571";}});
-		add(new userinfo() {{name="sdsd3";cardid="522728198511053015";sex="ÄĞ";qqString="403648571";}});
-		add(new userinfo() {{name="sdsd4";cardid="522728198511053015";sex="ÄĞ";qqString="403648571";}});
-		add(new userinfo() {{name="sdsd5";cardid="522728198511053015";sex="ÄĞ";qqString="403648571";}});
-		add(new userinfo() {{name="sdsd6";cardid="522728198511053015";sex="ÄĞ";qqString="403648571";}});
-		add(new userinfo() {{name="sdsd7";cardid="522728198511053015";sex="ÄĞ";qqString="403648571";}});
+		{{add(new userinfo() {{name="sdsd1";cardid="522728198511053015";sex="ç”·";qqString="403648571";}});
+		add(new userinfo() {{name="sdsd2";cardid="522728198511053015";sex="ç”·";qqString="403648571";}});
+		add(new userinfo() {{name="sdsd3";cardid="522728198511053015";sex="ç”·";qqString="403648571";}});
+		add(new userinfo() {{name="sdsd4";cardid="522728198511053015";sex="ç”·";qqString="403648571";}});
+		add(new userinfo() {{name="sdsd5";cardid="522728198511053015";sex="ç”·";qqString="403648571";}});
+		add(new userinfo() {{name="sdsd6";cardid="522728198511053015";sex="ç”·";qqString="403648571";}});
+		add(new userinfo() {{name="sdsd7";cardid="522728198511053015";sex="ç”·";qqString="403648571";}});
 		}};		
-		//Collections.sort((List<T>));//ÅÅĞò
-		//°Ñlist½âÎöÎª×Ö·û´®
+		//Collections.sort((List<T>));//æ’åº
+		//æŠŠlistè§£æä¸ºå­—ç¬¦ä¸²
 		String objStr = JSON.toJSONString(lst);
-		//±éÀú¼¯ºÏ
-		System.out.println(objStr);		
-		lst.forEach((v)->System.out.println("ÄÚÈİ£º"+v.name));
+		//éå†é›†åˆ
+		//System.out.println(objStr);		
+		lst.forEach((v)->System.out.println("å†…å®¹ï¼š"+v.name));
 		/*
-		 *¡¾ LinkedList¡¿¸ÃÀàÊµÏÖÁËList½Ó¿Ú£¬ÔÊĞíÓĞnull£¨¿Õ£©ÔªËØ¡£Ö÷ÒªÓÃÓÚ´´½¨Á´±íÊı¾İ½á¹¹£¬ 
-		 *¸ÃÀàÃ»ÓĞÍ¬²½·½·¨£¬Èç¹û¶à¸öÏß³ÌÍ¬Ê±·ÃÎÊÒ»¸öList£¬Ôò±ØĞë×Ô¼ºÊµÏÖ·ÃÎÊÍ¬²½£¬
-		 * ½â¾ö·½·¨¾ÍÊÇÔÚ´´½¨ListÊ±ºò¹¹ÔìÒ»¸öÍ¬²½µÄList
-		 * Ê¹ÓÃÇé¿ö£ºÄãĞèÒªÍ¨¹ıÑ­»·µü´úÀ´·ÃÎÊÁĞ±íÖĞµÄÄ³Ğ©ÔªËØ£¬ĞèÒªÆµ·±µÄÔÚÁĞ±í¿ªÍ·¡¢ÖĞ¼ä¡¢Ä©Î²µÈÎ»ÖÃ½øĞĞÌí¼ÓºÍÉ¾³ıÔªËØ²Ù×÷¡£
+		 *ã€ LinkedListã€‘è¯¥ç±»å®ç°äº†Listæ¥å£ï¼Œå…è®¸æœ‰nullï¼ˆç©ºï¼‰å…ƒç´ ã€‚ä¸»è¦ç”¨äºåˆ›å»ºé“¾è¡¨æ•°æ®ç»“æ„ï¼Œ 
+		 *è¯¥ç±»æ²¡æœ‰åŒæ­¥æ–¹æ³•ï¼Œå¦‚æœå¤šä¸ªçº¿ç¨‹åŒæ—¶è®¿é—®ä¸€ä¸ªListï¼Œåˆ™å¿…é¡»è‡ªå·±å®ç°è®¿é—®åŒæ­¥ï¼Œ
+		 * è§£å†³æ–¹æ³•å°±æ˜¯åœ¨åˆ›å»ºListæ—¶å€™æ„é€ ä¸€ä¸ªåŒæ­¥çš„List
+		 * ä½¿ç”¨æƒ…å†µï¼šä½ éœ€è¦é€šè¿‡å¾ªç¯è¿­ä»£æ¥è®¿é—®åˆ—è¡¨ä¸­çš„æŸäº›å…ƒç´ ï¼Œéœ€è¦é¢‘ç¹çš„åœ¨åˆ—è¡¨å¼€å¤´ã€ä¸­é—´ã€æœ«å°¾ç­‰ä½ç½®è¿›è¡Œæ·»åŠ å’Œåˆ é™¤å…ƒç´ æ“ä½œã€‚
 		 */
-		
-		
+		List<userinfo> strings2=new LinkedList<userinfo>();
+		strings2.add(new userinfo());
+		objStr = JSON.toJSONString(lst);
+		//éå†é›†åˆ
+		//System.out.println(objStr);		
+		GetMysqlData();
 	}
+	
+	  public static void GetMysqlData() { try {
+	  
+		  //new MySQLGeneratorEntityUtil().parse();
+		  
+	  var connect =
+	  DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/fyt_ims?serverTimezone=Asia/Shanghai&useSSL=true","wen","8991731mawen");//javaè¿™ä¸ªç©ºå¡«å†™çš„æ˜¯ä½ è‡ªå·±è®¾çš„å¯†ç 
+	  
+	  System.out.println("Success connect Mysql server!"); 
+	  var stmt =connect.createStatement();
+	  ResultSet rs =stmt.executeQuery("select * from card_insuredperson"); //user ä¸ºä½ è¡¨çš„åç§°ï¼Œå¯ä»¥åœ¨MySQLå‘½ä»¤è¡Œç”¨show
+	  
+	  //tablesï¼›æ˜¾ç¤º 
+	  //var data=rs.;
+      List<CardInsuredperson> strs=new LinkedList<CardInsuredperson>();
+      var metadata=rs.getMetaData();
+	  var coms=metadata.getColumnCount();
+	  var dt=ResultSetConverter.convert(rs,new CardInsuredperson());
+	  System.out.println(dt); 
+	  while (rs.next()) 
+	  {
+		 
+		  //System.out.println(rs.get); 
+		  for (int i = 0; i < coms; i++) {
+			 
+		}
+		  //System.out.println(rs.getString("OdData").toString()); 
+		  var tf=rs.getString("Name").toString();
+		 // System.out.println(tf); 
+		  //JSONObject jsonObject=JSONObject.fromObject(tf);
+		//  var mod=JSON.parseObject(tf, OOrderlog.class);
+		// strs.add(mod);
+		 
+
+
+			/*
+			 * JSONObject jsonObject = JSONObject.fromObject(tf); JSONObject orderJson =
+			 * jsonObject.getJSONObject("order"); CardInsuredperson order =
+			 * (CardInsuredperson) JSONObject.toBean(orderJson,CardInsuredperson.class);
+			 * System.out.println(order.getCardOrderNo());
+			 */
+		/*
+		 * JSONArray productsJson = jsonObject.getJSONArray("products"); // List
+		 * products = JSONArray.toList(productsJson,ProductVo.class); List products =
+		 * JSONArray.toList(productsJson, new ProductVo(), new JsonConfig());
+		 * System.out.println(((ProductVo)(products.get(0))).getName());
+		 * System.out.println(orderJson.get("remark"));
+		 * 
+		 * JSONObject productJson = productsJson.getJSONObject(0);
+		 * System.out.println(productJson.get("name"));
+		 */
+
+
+		//  System.out.println(jsonObject); 
+	  }
+	  System.out.println(JSON.toJSONString(strs)); 
+	  } catch
+	  (Exception e) { System.out.print("get data error!"); e.printStackTrace(); } 
+	 
+	  }
+	 
 }
