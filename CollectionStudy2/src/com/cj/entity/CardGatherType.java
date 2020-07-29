@@ -4,7 +4,7 @@ import java.util.Date;
 /**
  * table name:  card_gather_type
  * author name: 呐喊
- * create time: 2020-07-22 16:11:27
+ * create time: 2020-07-23 11:47:19
  */ 
 public class CardGatherType extends EntityHelper{
 
@@ -20,14 +20,14 @@ public class CardGatherType extends EntityHelper{
 	/*采集信息模块状态，1：未采集；2：已采集*/
 	private int Status;
 	/*创建时间*/
-	private null CreateTime;
+	private Date CreateTime;
 	/*更新时间*/
-	private null UpdateTime;
+	private Date UpdateTime;
 
 	public CardGatherType() {
 		super();
 	}
-	public CardGatherType(int Id,String Name,String CredNo,String CardOrderNo,int Type,int Status,null CreateTime,null UpdateTime) {
+	public CardGatherType(int Id,String Name,String CredNo,String CardOrderNo,int Type,int Status,Date CreateTime,Date UpdateTime) {
 		this.Id=Id;
 		this.Name=Name;
 		this.CredNo=CredNo;
@@ -73,16 +73,16 @@ public class CardGatherType extends EntityHelper{
 	public int getStatus(){
 		return Status;
 	}
-	public void setCreateTime(null CreateTime){
+	public void setCreateTime(Date CreateTime){
 		this.CreateTime=CreateTime;
 	}
-	public null getCreateTime(){
+	public Date getCreateTime(){
 		return CreateTime;
 	}
-	public void setUpdateTime(null UpdateTime){
+	public void setUpdateTime(Date UpdateTime){
 		this.UpdateTime=UpdateTime;
 	}
-	public null getUpdateTime(){
+	public Date getUpdateTime(){
 		return UpdateTime;
 	}
 	@Override

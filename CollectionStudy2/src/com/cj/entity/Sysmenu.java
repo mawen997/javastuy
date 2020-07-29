@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * table name:  sysmenu
  * author name: ÄÅº°
- * create time: 2020-07-22 16:11:27
+ * create time: 2020-07-23 11:47:19
  */ 
 public class Sysmenu extends EntityHelper{
 

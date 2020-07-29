@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * table name:  register
  * author name: 呐喊
- * create time: 2020-07-22 16:11:27
+ * create time: 2020-07-23 11:47:19
  */ 
 public class Register extends EntityHelper{
 
@@ -17,12 +17,12 @@ public class Register extends EntityHelper{
 	/*是否删除*/
 	private int Isdelete;
 	/*创建时间*/
-	private null CreateTime;
+	private Date CreateTime;
 
 	public Register() {
 		super();
 	}
-	public Register(int Id,String Code,String Chinesecode,int Isdelete,null CreateTime) {
+	public Register(int Id,String Code,String Chinesecode,int Isdelete,Date CreateTime) {
 		this.Id=Id;
 		this.Code=Code;
 		this.Chinesecode=Chinesecode;
@@ -53,10 +53,10 @@ public class Register extends EntityHelper{
 	public int getIsdelete(){
 		return Isdelete;
 	}
-	public void setCreateTime(null CreateTime){
+	public void setCreateTime(Date CreateTime){
 		this.CreateTime=CreateTime;
 	}
-	public null getCreateTime(){
+	public Date getCreateTime(){
 		return CreateTime;
 	}
 	@Override

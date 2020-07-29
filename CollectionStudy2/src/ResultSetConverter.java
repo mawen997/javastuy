@@ -7,19 +7,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONException;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.asm.Type;
 
 import net.sf.ezmorph.object.DateMorpher;
-import net.sf.json.JSONArray;
+/*import net.sf.json.JSONArray;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
-import net.sf.json.util.JSONUtils;
+import net.sf.json.util.JSONUtils;*/
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 public class ResultSetConverter {
 	//Ñ§Ï°·ºÐÍ
-	public static<T> List<T> convert(ResultSet rs ,T mod)
+	@SuppressWarnings("deprecation")
+	public static<T> List<T> convert(ResultSet rs ,Class<T> mod)
 		    throws SQLException, JSONException
 		  {
 		    JSONArray json = new JSONArray();
@@ -78,13 +83,8 @@ public class ResultSetConverter {
 
 		      json.add(obj);
 		    }
-		    List<T> list = new ArrayList<>();
-	        for(int i = 0;i<json.size();i++) {
-	            JSONObject jsonObject = JSONObject.fromObject(json.get(i).toString());
-	            JSONUtils.getMorpherRegistry().registerMorpher(new DateMorpher(new String[] {"yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss"}));
-	            var report = (T)JSONObject.toBean(jsonObject,mod.getClass());
-	            list.add(report);
-	        }
-		    return list;
+	        List<T> modlist=json.toJavaList(mod);//(json, mod.getClass());//.toList(json);
+	      // System.out.println( modlist.get(0));
+		    return modlist;
 		  }
 }

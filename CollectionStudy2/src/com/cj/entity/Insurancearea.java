@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * table name:  insurancearea
  * author name: 呐喊
- * create time: 2020-07-22 16:11:27
+ * create time: 2020-07-23 11:47:19
  */ 
 public class Insurancearea extends EntityHelper{
 
@@ -21,12 +21,12 @@ public class Insurancearea extends EntityHelper{
 	/*是否删除*/
 	private int Isdelete;
 	/*创建时间*/
-	private null CreateTime;
+	private Date CreateTime;
 
 	public Insurancearea() {
 		super();
 	}
-	public Insurancearea(int Id,String Code,String Area,String Upcode,String Regionallevel,int Isdelete,null CreateTime) {
+	public Insurancearea(int Id,String Code,String Area,String Upcode,String Regionallevel,int Isdelete,Date CreateTime) {
 		this.Id=Id;
 		this.Code=Code;
 		this.Area=Area;
@@ -71,10 +71,10 @@ public class Insurancearea extends EntityHelper{
 	public int getIsdelete(){
 		return Isdelete;
 	}
-	public void setCreateTime(null CreateTime){
+	public void setCreateTime(Date CreateTime){
 		this.CreateTime=CreateTime;
 	}
-	public null getCreateTime(){
+	public Date getCreateTime(){
 		return CreateTime;
 	}
 	@Override

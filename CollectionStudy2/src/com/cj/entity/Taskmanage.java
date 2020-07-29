@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * table name:  taskmanage
  * author name: ÄÅº°
- * create time: 2020-07-22 16:11:28
+ * create time: 2020-07-23 11:47:19
  */ 
 public class Taskmanage extends EntityHelper{
 

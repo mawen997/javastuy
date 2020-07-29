@@ -4,7 +4,7 @@ import java.util.Date;
 /**
  * table name:  card_historyapprove
  * author name: 呐喊
- * create time: 2020-07-22 16:11:27
+ * create time: 2020-07-23 11:47:19
  */ 
 public class CardHistoryapprove extends EntityHelper{
 
@@ -14,7 +14,7 @@ public class CardHistoryapprove extends EntityHelper{
 	/*卡申请订单号*/
 	private String CardOrderNo;
 	/*审批时间*/
-	private null Approve_DateTime;
+	private Date Approve_DateTime;
 	/*审批状态*/
 	private int Approve_Status;
 	/*审批人*/
@@ -29,7 +29,7 @@ public class CardHistoryapprove extends EntityHelper{
 	public CardHistoryapprove() {
 		super();
 	}
-	public CardHistoryapprove(long Id,String CardOperator_Id,String CardOrderNo,null Approve_DateTime,int Approve_Status,String Approve_Users,String Approve_Opinion,String ApproveStatus,String Reserve1,String Reserve2) {
+	public CardHistoryapprove(long Id,String CardOperator_Id,String CardOrderNo,Date Approve_DateTime,int Approve_Status,String Approve_Users,String Approve_Opinion,String ApproveStatus,String Reserve1,String Reserve2) {
 		this.Id=Id;
 		this.CardOperator_Id=CardOperator_Id;
 		this.CardOrderNo=CardOrderNo;
@@ -59,10 +59,10 @@ public class CardHistoryapprove extends EntityHelper{
 	public String getCardOrderNo(){
 		return CardOrderNo;
 	}
-	public void setApprove_DateTime(null Approve_DateTime){
+	public void setApprove_DateTime(Date Approve_DateTime){
 		this.Approve_DateTime=Approve_DateTime;
 	}
-	public null getApprove_DateTime(){
+	public Date getApprove_DateTime(){
 		return Approve_DateTime;
 	}
 	public void setApprove_Status(int Approve_Status){

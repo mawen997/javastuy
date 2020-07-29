@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * table name:  o_orderlog
  * author name: 呐喊
- * create time: 2020-07-22 16:11:27
+ * create time: 2020-07-23 11:47:19
  */ 
 public class OOrderlog extends EntityHelper{
 
@@ -24,14 +24,14 @@ public class OOrderlog extends EntityHelper{
 	private String IP;
 	/*操作时间*/
 	private Date CreateTime;
-	private byte[] test;
+	private Byte[] test;
 	/*操作说明*/
 	private String OperationContent;
 
 	public OOrderlog() {
 		super();
 	}
-	public OOrderlog(long OrderLogID,String DataType,String DataTableName,String OdData,long UserID,String UserName,String IP,Date CreateTime,byte[] test,String OperationContent) {
+	public OOrderlog(long OrderLogID,String DataType,String DataTableName,String OdData,long UserID,String UserName,String IP,Date CreateTime,Byte[] test,String OperationContent) {
 		this.OrderLogID=OrderLogID;
 		this.DataType=DataType;
 		this.DataTableName=DataTableName;
@@ -91,10 +91,10 @@ public class OOrderlog extends EntityHelper{
 	public Date getCreateTime(){
 		return CreateTime;
 	}
-	public void setTest(byte[] test){
+	public void setTest(Byte[] test){
 		this.test=test;
 	}
-	public byte[] getTest(){
+	public Byte[] getTest(){
 		return test;
 	}
 	public void setOperationContent(String OperationContent){

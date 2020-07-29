@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * table name:  ssc_post_consignee
  * author name: 呐喊
- * create time: 2020-07-22 16:11:27
+ * create time: 2020-07-23 11:47:19
  */ 
 public class SscPostConsignee extends EntityHelper{
 
@@ -39,14 +39,14 @@ public class SscPostConsignee extends EntityHelper{
 	/*邮政编码*/
 	private String PostCode;
 	/*创建时间*/
-	private null CreateTime;
+	private Date CreateTime;
 	/*更新时间*/
-	private null UpdateTime;
+	private Date UpdateTime;
 
 	public SscPostConsignee() {
 		super();
 	}
-	public SscPostConsignee(long Id,String Name,String OrderNo,String IdentityCard,String Phone,String ProvinceCode,String Province,String CityCode,String City,String AreaCode,String Area,String StreetCode,String Street,String Address,String PostCode,null CreateTime,null UpdateTime) {
+	public SscPostConsignee(long Id,String Name,String OrderNo,String IdentityCard,String Phone,String ProvinceCode,String Province,String CityCode,String City,String AreaCode,String Area,String StreetCode,String Street,String Address,String PostCode,Date CreateTime,Date UpdateTime) {
 		this.Id=Id;
 		this.Name=Name;
 		this.OrderNo=OrderNo;
@@ -155,16 +155,16 @@ public class SscPostConsignee extends EntityHelper{
 	public String getPostCode(){
 		return PostCode;
 	}
-	public void setCreateTime(null CreateTime){
+	public void setCreateTime(Date CreateTime){
 		this.CreateTime=CreateTime;
 	}
-	public null getCreateTime(){
+	public Date getCreateTime(){
 		return CreateTime;
 	}
-	public void setUpdateTime(null UpdateTime){
+	public void setUpdateTime(Date UpdateTime){
 		this.UpdateTime=UpdateTime;
 	}
-	public null getUpdateTime(){
+	public Date getUpdateTime(){
 		return UpdateTime;
 	}
 	@Override

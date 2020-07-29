@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * table name:  msg_interactive_validation_history
  * author name: 呐喊
- * create time: 2020-07-22 16:11:27
+ * create time: 2020-07-23 11:47:19
  */ 
 public class MsgInteractiveValidationHistory extends EntityHelper{
 
@@ -15,7 +15,7 @@ public class MsgInteractiveValidationHistory extends EntityHelper{
 	/*正确的验证码*/
 	private String CorrectValidateCode;
 	/*正确的验证码过期时间*/
-	private null ExpiredTime;
+	private Date ExpiredTime;
 	/*用户提交的验证码*/
 	private String RequestValidateCode;
 	/*是否通过验证*/
@@ -23,14 +23,14 @@ public class MsgInteractiveValidationHistory extends EntityHelper{
 	/*没有通过验证的原因*/
 	private String FailReason;
 	/*创建时间*/
-	private null CreateTime;
+	private Date CreateTime;
 	/*更新时间*/
-	private null UpdateTime;
+	private Date UpdateTime;
 
 	public MsgInteractiveValidationHistory() {
 		super();
 	}
-	public MsgInteractiveValidationHistory(long Id,String Ip,String CorrectValidateCode,null ExpiredTime,String RequestValidateCode,boolean IsAuthenticated,String FailReason,null CreateTime,null UpdateTime) {
+	public MsgInteractiveValidationHistory(long Id,String Ip,String CorrectValidateCode,Date ExpiredTime,String RequestValidateCode,boolean IsAuthenticated,String FailReason,Date CreateTime,Date UpdateTime) {
 		this.Id=Id;
 		this.Ip=Ip;
 		this.CorrectValidateCode=CorrectValidateCode;
@@ -59,10 +59,10 @@ public class MsgInteractiveValidationHistory extends EntityHelper{
 	public String getCorrectValidateCode(){
 		return CorrectValidateCode;
 	}
-	public void setExpiredTime(null ExpiredTime){
+	public void setExpiredTime(Date ExpiredTime){
 		this.ExpiredTime=ExpiredTime;
 	}
-	public null getExpiredTime(){
+	public Date getExpiredTime(){
 		return ExpiredTime;
 	}
 	public void setRequestValidateCode(String RequestValidateCode){
@@ -83,16 +83,16 @@ public class MsgInteractiveValidationHistory extends EntityHelper{
 	public String getFailReason(){
 		return FailReason;
 	}
-	public void setCreateTime(null CreateTime){
+	public void setCreateTime(Date CreateTime){
 		this.CreateTime=CreateTime;
 	}
-	public null getCreateTime(){
+	public Date getCreateTime(){
 		return CreateTime;
 	}
-	public void setUpdateTime(null UpdateTime){
+	public void setUpdateTime(Date UpdateTime){
 		this.UpdateTime=UpdateTime;
 	}
-	public null getUpdateTime(){
+	public Date getUpdateTime(){
 		return UpdateTime;
 	}
 	@Override

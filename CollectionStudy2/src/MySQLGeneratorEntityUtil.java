@@ -250,12 +250,15 @@ public class MySQLGeneratorEntityUtil {
                 || sqlType.equalsIgnoreCase("nvarchar") || sqlType.equalsIgnoreCase("nchar")
                 || sqlType.equalsIgnoreCase("text")|| sqlType.equalsIgnoreCase("longtext")) {
             return "String";
-        } else if (sqlType.equalsIgnoreCase("datetime")) {
+        } else if (sqlType.equalsIgnoreCase("datetime")||sqlType.equalsIgnoreCase("TIMESTAMP")) {
             return "Date";
         } else if (sqlType.equalsIgnoreCase("image")) {
             return "Blod";
          }else if (sqlType.equalsIgnoreCase("decimal")) {
              return "BigDecimal";
+         }
+         else if (sqlType.equalsIgnoreCase("BINARY")) {
+             return "Byte[]";
          }
         return null;
     }

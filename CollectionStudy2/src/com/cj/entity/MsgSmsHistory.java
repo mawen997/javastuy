@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * table name:  msg_sms_history
  * author name: 呐喊
- * create time: 2020-07-22 16:11:27
+ * create time: 2020-07-23 11:47:19
  */ 
 public class MsgSmsHistory extends EntityHelper{
 
@@ -29,9 +29,9 @@ public class MsgSmsHistory extends EntityHelper{
 	/*第三方错误信息*/
 	private String ResultMessage;
 	/*发送时间*/
-	private null CreateTime;
+	private Date CreateTime;
 	/*更新时间*/
-	private null UpdateTime;
+	private Date UpdateTime;
 	/*运营商异常码*/
 	private String OperatorErrorCode;
 	/*运营商交易码*/
@@ -44,7 +44,7 @@ public class MsgSmsHistory extends EntityHelper{
 	public MsgSmsHistory() {
 		super();
 	}
-	public MsgSmsHistory(long Id,long ApplicationId,long ChannelId,long TemplateId,String Phone,String Content,int SendStatus,String SerialNumber,String ResultCode,String ResultMessage,null CreateTime,null UpdateTime,String OperatorErrorCode,String OperatorTansCode,String OperatorMsg,int OperatorState) {
+	public MsgSmsHistory(long Id,long ApplicationId,long ChannelId,long TemplateId,String Phone,String Content,int SendStatus,String SerialNumber,String ResultCode,String ResultMessage,Date CreateTime,Date UpdateTime,String OperatorErrorCode,String OperatorTansCode,String OperatorMsg,int OperatorState) {
 		this.Id=Id;
 		this.ApplicationId=ApplicationId;
 		this.ChannelId=ChannelId;
@@ -122,16 +122,16 @@ public class MsgSmsHistory extends EntityHelper{
 	public String getResultMessage(){
 		return ResultMessage;
 	}
-	public void setCreateTime(null CreateTime){
+	public void setCreateTime(Date CreateTime){
 		this.CreateTime=CreateTime;
 	}
-	public null getCreateTime(){
+	public Date getCreateTime(){
 		return CreateTime;
 	}
-	public void setUpdateTime(null UpdateTime){
+	public void setUpdateTime(Date UpdateTime){
 		this.UpdateTime=UpdateTime;
 	}
-	public null getUpdateTime(){
+	public Date getUpdateTime(){
 		return UpdateTime;
 	}
 	public void setOperatorErrorCode(String OperatorErrorCode){

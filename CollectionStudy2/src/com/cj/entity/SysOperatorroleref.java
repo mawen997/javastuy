@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * table name:  sys_operatorroleref
  * author name: 呐喊
- * create time: 2020-07-22 16:11:27
+ * create time: 2020-07-23 11:47:19
  */ 
 public class SysOperatorroleref extends EntityHelper{
 
@@ -16,12 +16,12 @@ public class SysOperatorroleref extends EntityHelper{
 	/*是否删除*/
 	private boolean IsDelete;
 	/*创建时间*/
-	private null CreateDate;
+	private Date CreateDate;
 
 	public SysOperatorroleref() {
 		super();
 	}
-	public SysOperatorroleref(long RoleId,long OperatorId,boolean IsDelete,null CreateDate) {
+	public SysOperatorroleref(long RoleId,long OperatorId,boolean IsDelete,Date CreateDate) {
 		this.RoleId=RoleId;
 		this.OperatorId=OperatorId;
 		this.IsDelete=IsDelete;
@@ -45,10 +45,10 @@ public class SysOperatorroleref extends EntityHelper{
 	public boolean getIsDelete(){
 		return IsDelete;
 	}
-	public void setCreateDate(null CreateDate){
+	public void setCreateDate(Date CreateDate){
 		this.CreateDate=CreateDate;
 	}
-	public null getCreateDate(){
+	public Date getCreateDate(){
 		return CreateDate;
 	}
 	@Override
