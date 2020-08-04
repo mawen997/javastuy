@@ -8,6 +8,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+
+import com.ThreadStudyCls.ThreadStudyJc;
+import com.ThreadStudyCls.userinfo;
 import com.alibaba.fastjson.JSON;
 import com.cj.entity.CardInsuredperson;
 import com.cj.entity.OOrderlog;
@@ -20,88 +23,198 @@ import net.sf.json.JSONObject;
 public class StartStudy {
 
 	public static void main(String[] strings) {
-		/*
-		 * 【ArrayList】该类也是实现了List的接口，实现了可变大小的数组，随机访问和遍历元素时，
-		 * 提供更好的性能。该类也是非同步的,在多线程的情况下不要使用。 ArrayList 增长当前长度的50%，插入删除效率低。
-		 * 使用情况：频繁访问列表中的某一个元素。只需要在列表末尾进行添加和删除元素操作
-		 */
-		var lst = new ArrayList<userinfo>() {
+
+		//集合类的学习
+		ArrayListSty();
+		synlinkedlist();
+		//多线程的学习
+		ThreadStudy();
+	}
+    /*
+     * 多线程的学习，实现多线程编程的方式有两种，一种是继承 Thread 类，
+     * 另一种是实现 Runnable 接口。使用继承 Thread 类创建线程，最大的局限就是不能多继承，
+     * 所以为了支持多继承，完全可以实现 Runnable 接口的方式。需要说明的是，
+     * 这两种方式在工作时的性质都是一样的，没有本质的区别
+     */
+	public static void ThreadStudy() {
+		//继承 thread 类
+		ThreadStudyJc.main();
+		//实现runnable接口
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				System.out.println("实现runnable接口");
+				
+			}
+		}).start();
+		//使用同步的list
+		var data=Collections.synchronizedList(synlinkedlist());
+		 var th1=new Thread(new Runnable() {
+				@Override
+				public void run() {			
+					new ThreadStudyJc().Threadsty(data.get(1));
+				}
+			});
+		 th1.setName("th1");
+		 var th2=new Thread(new Runnable() {
+				@Override
+				public void run() {			
+					new ThreadStudyJc().Threadsty(data.get(2));
+				}
+			});
+		 var th3=new Thread(new Runnable() {
+				@Override
+				public void run() {			
+					new ThreadStudyJc().Threadsty(data.get(3));
+				}
+			});
+		 var th4=new Thread(new Runnable() {
+				@Override
+				public void run() {			
+					new ThreadStudyJc().Threadsty(data.get(4));
+				}
+			});
+		 var th5=new Thread(new Runnable() {
+				@Override
+				public void run() {			
+					new ThreadStudyJc().Threadsty(data.get(5));
+				}
+			});
+		  th1.start();
+		  th2.start();
+		  th3.start();
+		  th4.start();
+		  th5.start();
+		  
+			/*
+			 * for (int i = 0; i < data.size(); i++) { final int j=i; var th=new Thread(new
+			 * Runnable() {
+			 * 
+			 * @Override public void run() { new ThreadStudyJc().Threadsty(data.get(j)); }
+			 * }); th.start();
+			 * 
+			 * }
+			 */
+		
+		
+	}
+
+	public static void Threadsty(userinfo model)
+	{
+		System.out.println("序号："+model.index+",名称:"+model.name);
+	}
+	/*
+	 * 多线程访问linkedlist集合时解决数据同步的问题
+	 */
+	public static List<userinfo> synlinkedlist() {
+		var lst = Collections.synchronizedList(new LinkedList<userinfo>());
+		var count=100;
+		var usdata = new userinfo() {
 			{
-				add(new userinfo() {
-					{
-						name = "sdsd1";
-						cardid = "522728198511053015";
-						sex = "男";
-						qqString = "403648571";
-					}
-				});
-				add(new userinfo() {
-					{
-						name = "sdsd2";
-						cardid = "522728198511053015";
-						sex = "男";
-						qqString = "403648571";
-					}
-				});
-				add(new userinfo() {
-					{
-						name = "sdsd3";
-						cardid = "522728198511053015";
-						sex = "男";
-						qqString = "403648571";
-					}
-				});
-				add(new userinfo() {
-					{
-						name = "sdsd4";
-						cardid = "522728198511053015";
-						sex = "男";
-						qqString = "403648571";
-					}
-				});
-				add(new userinfo() {
-					{
-						name = "sdsd5";
-						cardid = "522728198511053015";
-						sex = "男";
-						qqString = "403648571";
-					}
-				});
-				add(new userinfo() {
-					{
-						name = "sdsd6";
-						cardid = "522728198511053015";
-						sex = "男";
-						qqString = "403648571";
-					}
-				});
-				add(new userinfo() {
-					{
-						name = "sdsd7";
-						cardid = "522728198511053015";
-						sex = "男";
-						qqString = "403648571";
-					}
-				});
+				name = "sdsd1";
+				cardid = "522728198511053015";
+				sex = "男";
+				qqString = "403648571";
 			}
 		};
-		// Collections.sort((List<T>));//排序
-		// 把list解析为字符串
-		String objStr = JSON.toJSONString(lst);
-		// 遍历集合
-		// System.out.println(objStr);
-		lst.forEach((v) -> System.out.println("内容：" + v.name));
-		/*
-		 * 【 LinkedList】该类实现了List接口，允许有null（空）元素。主要用于创建链表数据结构，
-		 * 该类没有同步方法，如果多个线程同时访问一个List，则必须自己实现访问同步， 解决方法就是在创建List时候构造一个同步的List
-		 * 使用情况：你需要通过循环迭代来访问列表中的某些元素，需要频繁的在列表开头、中间、末尾等位置进行添加和删除元素操作。
-		 */
+		var starttime = System.currentTimeMillis();
+		usdata.name="0";
+		for (int i = 0; i < count; i++) {
+			//usdata.name+=i;
+			usdata.index++;
+			lst.add(usdata);
+		}
+		var endtime = System.currentTimeMillis();
+		System.out.println("LinkedList同步情况下：" + (endtime-starttime)+"ms");
+		
+		lst =new LinkedList<userinfo>();
+		 starttime = System.currentTimeMillis();
+		usdata.name="0";
+		for (int i = 0; i < count; i++) {
+			var usdatas = new userinfo();
+			usdatas.index=i;
+			usdatas.name="测试"+i;
+			lst.add(usdatas);
+		}
+	    endtime = System.currentTimeMillis();
+		System.out.println("LinkedList异步情况下：" + (endtime-starttime)+"ms");
+		return lst;
+	}
+	/*
+	 * Vector的学习，Vector非常类似ArrayList，但是Vector是同步的。由Vector创建的Iterator， 虽然和
+	 * ArrayList创建的Iterator是同一接口，但是，因为Vector是同步的，当一个Iterator被创建而且正在被使用， 另一个线程改变了
+	 * Vector的状态（例如，添加或删除了一些元素）， 这时调用Iterator的方法时将抛出
+	 * ConcurrentModificationException，因此必须捕获该异常
+	 */
+	public static void VectorSty() {
+
+	}
+
+	/*
+	 * ArrayList实现了可变大小的数组。它允许所有元素，包括null。ArrayList没有同步。
+	 * size，isEmpty，get，set方法运行时间为常数。但是add方法开销为分摊的常数，添加n个元素需要O(n)的时间。其他的方法运行时间为线性。
+	 * 每个ArrayList实例都有一个容量（Capacity），即用于存储元素的数组的大小。这个容量可随着不断添加新元素而自动增加，但是增长算法 并没有定义。
+	 * 当需要插入大量元素时，在插入前可以调用ensureCapacity方法来增加ArrayList的容量以提高插入效率。
+	 * 和LinkedList一样，ArrayList也是非同步的（unsynchronized）。
+	 */
+	public static void ArrayListSty() {
+		// var alist=new ArrayList<userinfo>();
+		var usdata = new userinfo() {
+			{
+				name = "sdsd1";
+				cardid = "522728198511053015";
+				sex = "男";
+				qqString = "403648571";
+			}
+		};
+		var usdata2 = new userinfo() {
+			{
+				name = "sdsd1";
+				cardid = "522728198511053015";
+				sex = "男";
+				qqString = "403648571";
+			}
+		};
+		var usdata3 = new userinfo() {
+			{
+				name = "sdsd1";
+				cardid = "522728198511053015";
+				sex = "男";
+				qqString = "403648571";
+			}
+		};
+		var count = 10000;
+		var lst = new ArrayList<userinfo>();
+		var starttime = System.currentTimeMillis();
+		for (int i = 0; i < count; i++) {
+			usdata.name+=i;
+			lst.add(usdata);
+		}
+		var endtime = System.currentTimeMillis();
+		System.out.println("没有使用ensureCapacity：" + (endtime-starttime)+"ms");
+		//使用ensureCapacity
+		lst.clear();
+		lst.ensureCapacity(count);
+		starttime = System.currentTimeMillis();
+		for (int i = 0; i < count; i++) {
+			usdata2.name+=i;
+			lst.add(usdata2);
+		}
+		endtime = System.currentTimeMillis();
+		System.out.println("使用ensureCapacity：" + (endtime-starttime)+"ms");
+		//使用LinkedList
 		List<userinfo> strings2 = new LinkedList<userinfo>();
-		strings2.add(new userinfo());
-		objStr = JSON.toJSONString(lst);
-		// 遍历集合
-		// System.out.println(objStr);
-		GetMysqlData();
+		starttime = System.currentTimeMillis();
+		usdata.name="0";
+		for (int i = 0; i < count; i++) {
+			usdata3.name+=i;
+			strings2.add(usdata3);
+		}
+		endtime = System.currentTimeMillis();
+		System.out.println("使用LinkedList：" + (endtime-starttime)+"ms");
+		
+		
 	}
 
 	public static void GetMysqlData() {
@@ -115,13 +228,13 @@ public class StartStudy {
 
 			System.out.println("Success connect Mysql server!");
 			var stmt = connect.createStatement();
-			//链接数据库获取数据
+			// 链接数据库获取数据
 			ResultSet rs = stmt.executeQuery("select * from card_insuredperson"); // user 为你表的名称，可以在MySQL命令行用show
-			//把数据转换为list实体
-			List<CardInsuredperson> dt = ResultSetConverter.convert(rs,CardInsuredperson.class);	
-			//遍历list
+			// 把数据转换为list实体
+			List<CardInsuredperson> dt = ResultSetConverter.convert(rs, CardInsuredperson.class);
+			// 遍历list
 			for (int i = 0; i < dt.size(); i++) {
-				//取出某个字段的值
+				// 取出某个字段的值
 				var df = dt.get(i).getCardId();
 				System.out.println(df);
 			}

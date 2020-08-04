@@ -1,3 +1,4 @@
+package com.ThreadStudyCls;
 
 public class userinfo {
 
@@ -17,5 +18,6 @@ public class userinfo {
 	 * qqºÅ
 	 */
 	public String qqString;
+	public int index;
 	
 }
