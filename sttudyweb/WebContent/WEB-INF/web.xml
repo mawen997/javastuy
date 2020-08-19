@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>sttudyweb</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+ <!-- 配置servlet和映射servlet -->
+  <!-- 注册一个servlet -->
+<servlet>
+  	<!-- 注册名 -->
+  	<servlet-name>hello</servlet-name>
+  	<!-- servlet全类名 --> <!-- / 代表当前web应用吗 -->
+  	<servlet-class>sttudyweb.servletsdy</servlet-class>
+  	<!-- 指定Servlet创建和初始化的时机 -->
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <!-- 映射 -->
+  <servlet-mapping>
+  <!-- 必须和注册名保持一致 -->
+  	<servlet-name>hello</servlet-name>
+  	<!-- 声明访问路径 -->
+  	<url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
